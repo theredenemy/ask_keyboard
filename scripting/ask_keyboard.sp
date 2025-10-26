@@ -17,5 +17,10 @@ public Plugin myinfo =
 
 public void OnPluginStart()
 {
-	
+	PrintToServer("hello");
+}
+
+public void OnMapStart()
+{
+	PrintToServer("placeholder");
 }
