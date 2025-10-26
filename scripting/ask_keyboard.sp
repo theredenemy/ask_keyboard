@@ -22,7 +22,7 @@ public void OnPluginStart()
 public void OnMapStart()
 {
 	char mapname[128];
-	char askcode[128];
+	// char askcode[128];
 	GetCurrentMap(mapname, sizeof(mapname));
 	PrintToServer(mapname);
 }
