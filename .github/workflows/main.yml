@@ -7,10 +7,4 @@
     input: scripting/ask_keyboard.sp
     # path/to/plugin.smx to output your compiled plugin file.
     output: test.smx
-    # Sourcemod version. It must bem 1.11 or 1.12
-    sourcemod: # optional, default is 1.12
-    # path/to/include If your plugin has custom includes
-    includes: # optional, default is 
-    # Tells if you want to use 32-bits or 64-bits compiler
-    comp64: # optional, default is true
           
