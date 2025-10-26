@@ -8,10 +8,10 @@
 public Plugin myinfo =
 {
 	name = "ask_keyboard",
-	author = "",
+	author = "TheRedEnemy",
 	description = "",
 	version = "1.0.0",
-	url = "https://github.com//ask_keyboard"
+	url = "https://github.com/theredenemy/ask_keyboard"
 };
 
 
