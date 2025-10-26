@@ -1,0 +1,16 @@
+            - name: Compile Sourcepawn Plugin
+  # You may pin to the exact commit or the version.
+  # uses: SheplyRam/compile-sourcepawn-plugin@3037f73c4825ea4fa2fcf17c57a35e8429d0910c
+  uses: SheplyRam/compile-sourcepawn-plugin@v1
+  with:
+    # path/to/plugin.sp to your plugin file.
+    input: scripting/ask_keyboard.sp
+    # path/to/plugin.smx to output your compiled plugin file.
+    output: test.smx
+    # Sourcemod version. It must bem 1.11 or 1.12
+    sourcemod: # optional, default is 1.12
+    # path/to/include If your plugin has custom includes
+    includes: # optional, default is 
+    # Tells if you want to use 32-bits or 64-bits compiler
+    comp64: # optional, default is true
+          
