@@ -43,6 +43,7 @@ public void OnPluginStart()
 	RegServerCmd("ask_input", ask_enter_command);
 	RegServerCmd("ask_reset", ask_reset_command);
 	RegServerCmd("ask_submit", ask_submit_command);
+	RegServerCmd("ask_clear", ask_clear_command);
 	clearAsk();
 	makeConfig();
 	PrintToServer("Ask Keyboard Has Loaded");
@@ -59,6 +60,12 @@ public Action ask_reset_command(int args)
 {
 	clearAsk();
 	ServerCommand("mp_restartgame 1");
+	return Plugin_Handled;
+}
+
+public Action ask_clear_command(int args)
+{
+	clearAsk();
 	return Plugin_Handled;
 }
 public Action ask_enter_command(int args)
@@ -90,11 +97,10 @@ public Action ask_submit_command(int args)
 {
 	char path[PLATFORM_MAX_PATH];
 	char cmd[MAX_CMD_LEN];
-	char code[MAX_LEN_ASK];
 	BuildPath(Path_SM, path, sizeof(path), "configs/%s", ASK_CODES_FILE);
 	KeyValues kv = new KeyValues("Ask_Codes");
 
-	if (!code[0])
+	if (!g_askcode[0])
 	{
 		PrintToServer("CODE IS EMPTY");
 		ServerCommand("ask_reset");
