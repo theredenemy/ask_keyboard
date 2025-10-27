@@ -7,8 +7,11 @@
 #pragma semicolon 1
 #define MAX_LEN_ASK 256
 #define MAX_CMD_LEN 256
+#define MAX_CODE_LEN 10
 #define ASK_CODES_FILE "ask_codes.txt"
 char g_askcode[MAX_LEN_ASK];
+char mapname[128];
+ConVar g_invaildcmd;
 public Plugin myinfo =
 {
 	name = "ask_keyboard",
@@ -37,6 +40,7 @@ void makeConfig()
 		delete kv;
 	}
 }
+
 public void OnPluginStart()
 {
 	
@@ -44,6 +48,7 @@ public void OnPluginStart()
 	RegServerCmd("ask_reset", ask_reset_command);
 	RegServerCmd("ask_submit", ask_submit_command);
 	RegServerCmd("ask_clear", ask_clear_command);
+	g_invaildcmd = CreateConVar("ask_invaildcmd", "changelevel noaccess");
 	clearAsk();
 	makeConfig();
 	PrintToServer("Ask Keyboard Has Loaded");
@@ -51,7 +56,7 @@ public void OnPluginStart()
 
 public void OnMapStart()
 {
-	char mapname[128];
+	mapname = "\0";
 	clearAsk();
 	GetCurrentMap(mapname, sizeof(mapname));
 	PrintToServer(mapname);
@@ -127,8 +132,9 @@ public Action ask_submit_command(int args)
 	}
 	else
 	{
+		g_invaildcmd.GetString(cmd, MAX_CMD_LEN);
 		PrintToServer("INVAILD CODE");
-		ServerCommand("changelevel noaccess");
+		ServerCommand("%s", cmd);
 
 		delete kv;
 		return Plugin_Handled;
