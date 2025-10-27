@@ -1,9 +1,13 @@
 #include <sdkhooks>
 #include <sdktools>
 #include <sourcemod>
+#include <string>
+#include <files>
 #pragma newdecls required
 #pragma semicolon 1
-#define MAX_LEN_ASK 128
+#define MAX_LEN_ASK 256
+#define MAX_CMD_LEN 256
+#define ASK_CODES_FILE "ask_codes.txt"
 char g_askcode[MAX_LEN_ASK];
 public Plugin myinfo =
 {
@@ -17,11 +21,30 @@ void clearAsk()
 {
 	g_askcode = "\0";
 }
+
+void makeConfig()
+{
+	char path[PLATFORM_MAX_PATH];
+	BuildPath(Path_SM, path, sizeof(path), "configs/%s", ASK_CODES_FILE);
+	if (!FileExists(path))
+	{
+		PrintToServer(path);
+		KeyValues kv = new KeyValues("Ask_Codes");
+		kv.SetString("a s k", "say ASK ; ask_reset");
+		kv.SetString("v i e w", "changelevel view");
+		kv.Rewind();
+		kv.ExportToFile(path);
+		delete kv;
+	}
+}
 public void OnPluginStart()
 {
+	
 	RegServerCmd("ask_input", ask_enter_command);
 	RegServerCmd("ask_reset", ask_reset_command);
+	RegServerCmd("ask_submit", ask_submit_command);
 	clearAsk();
+	makeConfig();
 	PrintToServer("Ask Keyboard Has Loaded");
 }
 
@@ -35,6 +58,7 @@ public void OnMapStart()
 public Action ask_reset_command(int args)
 {
 	clearAsk();
+	ServerCommand("mp_restartgame 1");
 	return Plugin_Handled;
 }
 public Action ask_enter_command(int args)
@@ -60,4 +84,47 @@ public Action ask_enter_command(int args)
 	PrintToServer(g_askcode);
 	return Plugin_Handled;
 
+}
+
+public Action ask_submit_command(int args)
+{
+	char path[PLATFORM_MAX_PATH];
+	char cmd[MAX_CMD_LEN];
+	char code[MAX_LEN_ASK];
+	BuildPath(Path_SM, path, sizeof(path), "configs/%s", ASK_CODES_FILE);
+	KeyValues kv = new KeyValues("Ask_Codes");
+
+	if (!code[0])
+	{
+		PrintToServer("CODE IS EMPTY");
+		ServerCommand("ask_reset");
+		delete kv;
+		return Plugin_Handled;
+	}
+
+	if (!kv.ImportFromFile(path))
+	{
+		PrintToServer("NO FILE");
+		delete kv;
+		return Plugin_Handled;
+	}
+
+	if (kv.JumpToKey(g_askcode, false))
+	{
+		PrintToServer("VAILD CODE");
+		kv.GetString(NULL_STRING, cmd, sizeof(cmd));
+		PrintToServer(cmd);
+		ServerCommand("%s", cmd);
+		
+		delete kv;
+		return Plugin_Handled;
+	}
+	else
+	{
+		PrintToServer("INVAILD CODE");
+		ServerCommand("changelevel noaccess");
+
+		delete kv;
+		return Plugin_Handled;
+	}
 }
