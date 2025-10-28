@@ -7,7 +7,6 @@
 #pragma semicolon 1
 #define MAX_LEN_ASK 256
 #define MAX_CMD_LEN 256
-#define MAX_CODE_LEN 10
 #define ASK_CODES_FILE "ask_codes.txt"
 char g_askcode[MAX_LEN_ASK];
 char mapname[128];
@@ -17,7 +16,7 @@ public Plugin myinfo =
 	name = "ask_keyboard",
 	author = "TheRedEnemy",
 	description = "",
-	version = "1.0.0",
+	version = "1.0.1",
 	url = "https://github.com/theredenemy/ask_keyboard"
 };
 void clearAsk()
