@@ -11,12 +11,13 @@
 char g_askcode[MAX_LEN_ASK];
 char mapname[128];
 ConVar g_invaildcmd;
+ConVar g_codeemptycmd;
 public Plugin myinfo =
 {
 	name = "ask_keyboard",
 	author = "TheRedEnemy",
 	description = "",
-	version = "1.0.1",
+	version = "1.0.2",
 	url = "https://github.com/theredenemy/ask_keyboard"
 };
 void clearAsk()
@@ -48,6 +49,7 @@ public void OnPluginStart()
 	RegServerCmd("ask_submit", ask_submit_command);
 	RegServerCmd("ask_clear", ask_clear_command);
 	g_invaildcmd = CreateConVar("ask_invaildcmd", "changelevel noaccess");
+	g_codeemptycmd = CreateConVar("ask_codeemptycmd", "ask_reset");
 	clearAsk();
 	makeConfig();
 	PrintToServer("Ask Keyboard Has Loaded");
@@ -106,8 +108,9 @@ public Action ask_submit_command(int args)
 
 	if (!g_askcode[0])
 	{
+		g_codeemptycmd.GetString(cmd, MAX_CMD_LEN);
 		PrintToServer("CODE IS EMPTY");
-		ServerCommand("ask_reset");
+		ServerCommand("%s", cmd);
 		delete kv;
 		return Plugin_Handled;
 	}
