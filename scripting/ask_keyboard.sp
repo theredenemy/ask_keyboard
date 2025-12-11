@@ -8,8 +8,10 @@
 #define MAX_LEN_ASK 256
 #define MAX_CMD_LEN 256
 #define ASK_CODES_FILE "ask_codes.txt"
+#define debugmode false
 char g_askcode[MAX_LEN_ASK];
 char mapname[128];
+bool debug = debugmode;
 ConVar g_invaildcmd;
 ConVar g_codeemptycmd;
 public Plugin myinfo =
@@ -17,7 +19,7 @@ public Plugin myinfo =
 	name = "ask_keyboard",
 	author = "TheRedEnemy",
 	description = "",
-	version = "1.0.3",
+	version = "1.0.4",
 	url = "https://github.com/theredenemy/ask_keyboard"
 };
 void clearAsk()
@@ -43,7 +45,6 @@ void makeConfig()
 
 public void OnPluginStart()
 {
-	
 	RegServerCmd("ask_input", ask_enter_command);
 	RegServerCmd("ask_reset", ask_reset_command);
 	RegServerCmd("ask_submit", ask_submit_command);
@@ -78,9 +79,12 @@ public Action ask_enter_command(int args)
 {
 	char arg[MAX_LEN_ASK];
     char full[256];
-	//char debug_len[256];
-	//IntToString(strlen(g_askcode), debug_len, sizeof(debug_len));
-	// PrintToServer(debug_len);
+	if (debug == true)
+	{
+		char debug_len[256];
+		IntToString(strlen(g_askcode), debug_len, sizeof(debug_len));
+		PrintToServer(debug_len);
+	}
 	if (args > 1)
 	{
 		PrintToServer("ONLY ONE INPUT AT A TIME");
@@ -95,8 +99,10 @@ public Action ask_enter_command(int args)
 	if (strlen(g_askcode) + strlen(arg) + 5 >= MAX_LEN_ASK)
 	{
 		PrintHintTextToAll("ERROR : Array Out Of Bounds RESET");
+		PrintToServer("ERROR : Array Out Of Bounds RESET");
 		clearAsk();
 		ServerCommand("mp_restartgame 1");
+		return Plugin_Handled;
 	}
     GetCmdArgString(full, sizeof(full));
 	
