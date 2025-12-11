@@ -17,7 +17,7 @@ public Plugin myinfo =
 	name = "ask_keyboard",
 	author = "TheRedEnemy",
 	description = "",
-	version = "1.0.2",
+	version = "1.0.3",
 	url = "https://github.com/theredenemy/ask_keyboard"
 };
 void clearAsk()
@@ -78,10 +78,25 @@ public Action ask_enter_command(int args)
 {
 	char arg[MAX_LEN_ASK];
     char full[256];
+	char debug_len[256];
+	IntToString(strlen(g_askcode), debug_len, sizeof(debug_len));
+	PrintToServer(debug_len);
 	if (args > 1)
 	{
 		PrintToServer("ONLY ONE INPUT AT A TIME");
 		return Plugin_Handled;
+	}
+	else if(args < 1)
+	{
+		PrintToServer("[SM] Usage: ask_input <input>");
+		return Plugin_Handled;
+	}
+
+	if (strlen(g_askcode) + strlen(arg) + 5 >= MAX_LEN_ASK)
+	{
+		PrintHintTextToAll("ERROR : Array Out Of Bounds RESET");
+		clearAsk();
+		ServerCommand("mp_restartgame 1");
 	}
     GetCmdArgString(full, sizeof(full));
 	
