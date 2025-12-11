@@ -19,7 +19,7 @@ public Plugin myinfo =
 	name = "ask_keyboard",
 	author = "TheRedEnemy",
 	description = "",
-	version = "1.0.4",
+	version = "1.1.0",
 	url = "https://github.com/theredenemy/ask_keyboard"
 };
 void clearAsk()
@@ -42,9 +42,9 @@ void makeConfig()
 		delete kv;
 	}
 }
-
 public void OnPluginStart()
 {
+	HookEvent("teamplay_round_start", Event_RoundStart, EventHookMode_Post);
 	RegServerCmd("ask_input", ask_enter_command);
 	RegServerCmd("ask_reset", ask_reset_command);
 	RegServerCmd("ask_submit", ask_submit_command);
@@ -62,6 +62,12 @@ public void OnMapStart()
 	clearAsk();
 	GetCurrentMap(mapname, sizeof(mapname));
 	PrintToServer(mapname);
+}
+public Action Event_RoundStart(Event event, const char[] name, bool dontBroadcast)
+{
+	clearAsk();
+	PrintToServer("Round Start");
+	return Plugin_Continue;
 }
 public Action ask_reset_command(int args)
 {
