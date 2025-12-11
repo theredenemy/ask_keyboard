@@ -78,9 +78,9 @@ public Action ask_enter_command(int args)
 {
 	char arg[MAX_LEN_ASK];
     char full[256];
-	char debug_len[256];
-	IntToString(strlen(g_askcode), debug_len, sizeof(debug_len));
-	PrintToServer(debug_len);
+	//char debug_len[256];
+	//IntToString(strlen(g_askcode), debug_len, sizeof(debug_len));
+	// PrintToServer(debug_len);
 	if (args > 1)
 	{
 		PrintToServer("ONLY ONE INPUT AT A TIME");
