@@ -19,7 +19,7 @@ public Plugin myinfo =
 	name = "ask_keyboard",
 	author = "TheRedEnemy",
 	description = "",
-	version = "1.1.0",
+	version = "1.1.1",
 	url = "https://github.com/theredenemy/ask_keyboard"
 };
 void clearAsk()
@@ -50,7 +50,7 @@ public void OnPluginStart()
 	RegServerCmd("ask_submit", ask_submit_command);
 	RegServerCmd("ask_clear", ask_clear_command);
 	g_invaildcmd = CreateConVar("ask_invaildcmd", "changelevel noaccess");
-	g_codeemptycmd = CreateConVar("ask_codeemptycmd", "ask_reset");
+	g_codeemptycmd = CreateConVar("ask_codeemptycmd", "changelevel noaccess");
 	clearAsk();
 	makeConfig();
 	PrintToServer("Ask Keyboard Has Loaded");
