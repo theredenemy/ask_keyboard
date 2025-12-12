@@ -22,7 +22,7 @@ jobs:
         id: setup_sp
         uses: rumblefrog/setup-sp@master
         with:
-          version: "1.11.x"
+          version: "1.12.x"
           version-file: ./scripting/ask_keyboard.sp
 
       - name: Compile plugins
