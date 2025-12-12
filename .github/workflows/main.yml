@@ -28,7 +28,7 @@ jobs:
       - name: Compile plugins
         run: |
           mkdir ../plugins
-          spcomp -w234 -O2 -v2 -i"include" -o"../plugins/submit_pawn.smx" submit_pawn.sp
+          spcomp -w234 -O2 -v2 -i"include" -o"../plugins/ask_keyboard.smx" ask_keyboard.sp
           echo "===OUT FILES==="
           ls ../plugins
           echo "===VERSION==="
