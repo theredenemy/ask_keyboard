@@ -1,9 +1,5 @@
 ## Release Notes
 
-## [1.1.1]
+## [1.1.2]
 
-### Added
-Bound Checking Added
-### Fixed
-
-### Removed
+Changed var mapname to g_mapname
