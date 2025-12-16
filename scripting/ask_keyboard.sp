@@ -10,7 +10,7 @@
 #define ASK_CODES_FILE "ask_codes.txt"
 #define debugmode false
 char g_askcode[MAX_LEN_ASK];
-char mapname[128];
+char g_mapname[128];
 bool debug = debugmode;
 ConVar g_invaildcmd;
 ConVar g_codeemptycmd;
@@ -19,7 +19,7 @@ public Plugin myinfo =
 	name = "ask_keyboard",
 	author = "TheRedEnemy",
 	description = "",
-	version = "1.1.1",
+	version = "1.1.2",
 	url = "https://github.com/theredenemy/ask_keyboard"
 };
 void clearAsk()
@@ -58,10 +58,10 @@ public void OnPluginStart()
 
 public void OnMapStart()
 {
-	mapname = "\0";
+	g_mapname = "\0";
 	clearAsk();
-	GetCurrentMap(mapname, sizeof(mapname));
-	PrintToServer(mapname);
+	GetCurrentMap(g_mapname, sizeof(g_mapname));
+	PrintToServer(g_mapname);
 }
 public Action Event_RoundStart(Event event, const char[] name, bool dontBroadcast)
 {
