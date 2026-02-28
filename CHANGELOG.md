@@ -1,5 +1,5 @@
 ## Release Notes
 
-## [1.1.2]
+## [1.1.3]
 
-Changed var mapname to g_mapname
+Added PrintToChat g_askcode

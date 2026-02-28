@@ -19,7 +19,7 @@ public Plugin myinfo =
 	name = "ask_keyboard",
 	author = "TheRedEnemy",
 	description = "",
-	version = "1.1.2",
+	version = "1.1.3",
 	url = "https://github.com/theredenemy/ask_keyboard"
 };
 void clearAsk()
@@ -122,6 +122,7 @@ public Action ask_enter_command(int args)
 
 	StrCat(g_askcode, sizeof(g_askcode), arg);
 	PrintToServer(g_askcode);
+	PrintToChatAll(g_askcode);
 	return Plugin_Handled;
 
 }
