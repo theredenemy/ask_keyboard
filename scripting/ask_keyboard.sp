@@ -19,7 +19,7 @@ public Plugin myinfo =
 	name = "ask_keyboard",
 	author = "TheRedEnemy",
 	description = "",
-	version = "1.1.3",
+	version = "1.1.4",
 	url = "https://github.com/theredenemy/ask_keyboard"
 };
 void clearAsk()
@@ -45,7 +45,7 @@ void makeConfig()
 public void OnPluginStart()
 {
 	HookEvent("teamplay_round_start", Event_RoundStart, EventHookMode_Post);
-	RegServerCmd("ask_input", ask_enter_command);
+	RegServerCmd("ask_input", ask_input_command);
 	RegServerCmd("ask_reset", ask_reset_command);
 	RegServerCmd("ask_submit", ask_submit_command);
 	RegServerCmd("ask_clear", ask_clear_command);
@@ -81,7 +81,7 @@ public Action ask_clear_command(int args)
 	clearAsk();
 	return Plugin_Handled;
 }
-public Action ask_enter_command(int args)
+public Action ask_input_command(int args)
 {
 	char arg[MAX_LEN_ASK];
     char full[256];
@@ -122,7 +122,7 @@ public Action ask_enter_command(int args)
 
 	StrCat(g_askcode, sizeof(g_askcode), arg);
 	PrintToServer(g_askcode);
-	PrintToChatAll(g_askcode);
+	PrintToChatAll("INPUTS : %s", g_askcode);
 	return Plugin_Handled;
 
 }

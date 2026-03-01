@@ -1,3 +1,9 @@
 *.smx
 /.vscode
+/.venv
+/sourcemod-win
+/sourcemod-linux
+*.tar.gz
+*.zip
+/*_archive
 scripting/test.sp
