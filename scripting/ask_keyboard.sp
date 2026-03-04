@@ -19,7 +19,7 @@ public Plugin myinfo =
 	name = "ask_keyboard",
 	author = "TheRedEnemy",
 	description = "",
-	version = "1.1.4",
+	version = "1.1.5",
 	url = "https://github.com/theredenemy/ask_keyboard"
 };
 void clearAsk()
