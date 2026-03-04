@@ -19,7 +19,7 @@ public Plugin myinfo =
 	name = "ask_keyboard",
 	author = "TheRedEnemy",
 	description = "",
-	version = "1.1.5",
+	version = "1.2.0",
 	url = "https://github.com/theredenemy/ask_keyboard"
 };
 void clearAsk()
@@ -37,6 +37,26 @@ void makeConfig()
 		KeyValues kv = new KeyValues("Ask_Codes");
 		kv.SetString("a s k", "say ASK ; ask_reset");
 		kv.SetString("v i e w", "changelevel view");
+		kv.SetString("m a z e", "changelevel mazemazemazemaze");
+		kv.SetString("o r d spave p l a y", "changelevel ord_play");
+		kv.SetString("k j e g l v ae gen", "changelevel subroutine_hello");
+		kv.SetString("a n o m i d ae", "changelevel veritas");
+		kv.SetString("q u i z", "changelevel quiz");
+		kv.SetString("ao p e n spave d os r", "changelevel souer");
+		kv.SetString("s o u e r", "changelevel souer");
+		kv.SetString("d os r", "changelevel souer");
+		kv.SetString("k u l c s", "changelevel plotmas");
+		kv.SetString("d r e a m s", "changelevel plotmas");
+		kv.SetString("m a p gen", "changelevel stork");
+		kv.SetString("gen", "changelevel stork");
+		kv.SetString("s t ao l", "changelevel stal");
+		kv.SetString("j s t ao l", "changelevel stal");
+		kv.SetString("k u r t", "changelevel kurt");
+		kv.SetString("w h o r u", "changelevel speckle");
+		kv.SetString("w h o a r e u", "changelevel speckle");
+		kv.SetString("s e a r c h", "changelevel crishy_is");
+		kv.SetString("y o u", "changelevel speckle");
+		kv.SetString("h o w a r e u", "changelevel speckle");
 		kv.Rewind();
 		kv.ExportToFile(path);
 		delete kv;

@@ -106,6 +106,9 @@ if archive_files is True:
     shutil.copytree(scripting_dir, os.path.join(archive_dir, "scripting"), dirs_exist_ok=True)
     shutil.copytree(plugins_dir, os.path.join(archive_dir, "plugins"), dirs_exist_ok=True)
     shutil.copytree(cfgs_dir, os.path.join(archive_dir, "cfg"), dirs_exist_ok=True)
+    with open(os.path.join(archive_dir, "README.txt"), 'w') as f:
+        f.write("https://gaq9.com/maps\n")
+        f.close()
 
     shutil.make_archive(base_name=plugin_name, format="zip", root_dir=maindir, base_dir=archive_dir_name)
     shutil.make_archive(base_name=plugin_name, format="gztar", root_dir=maindir, base_dir=archive_dir_name)
