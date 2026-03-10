@@ -20,7 +20,7 @@ public Plugin myinfo =
 	name = "ask_keyboard",
 	author = "TheRedEnemy",
 	description = "",
-	version = "1.2.1",
+	version = "1.2.2",
 	url = "https://github.com/theredenemy/ask_keyboard"
 };
 void clearAsk()
@@ -151,7 +151,7 @@ public Action ask_input_command(int args)
 	PrintToServer(g_askcode);
 	if (showcodeentry == 1)
 	{
-		PrintToChatAll("INPUTS : %s", g_askcode);
+		PrintToChatAll("\x077F00FFINPUTS\x01 : %s ", g_askcode);
 	}
 	
 	return Plugin_Handled;
